@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import FavCard from "../components/FavCard";
 import { Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { FavContext } from "../contexts/FavContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,26 +13,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
   const classes = useStyles();
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      title: "Batman",
-      category: "movie",
-      detail: "A great movie",
-    },
-    {
-      id: 2,
-      title: "Book2",
-      category: "book",
-      detail: "A great Book",
-    },
-  ]);
+  const { fav } = useContext(FavContext);
   return (
     <Container className={classes.root}>
       <Grid container spacing={3}>
-        {notes.map((note) => {
+        {fav.map((note) => {
           return (
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={12} md={6} lg={3} key={note.id}>
               <FavCard card={note} />
             </Grid>
           );

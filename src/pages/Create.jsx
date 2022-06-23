@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   TextField,
   Container,
@@ -9,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { FavContext } from "../contexts/FavContext";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Create = () => {
+  const { dispatch } = useContext(FavContext);
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
@@ -46,12 +49,14 @@ const Create = () => {
     }
 
     if (title && detail) {
-      const newPost = {
-        title,
-        category,
-        detail,
-      };
-      console.log(newPost);
+      dispatch({
+        type: "ADD_FAV",
+        sfav: {
+          title,
+          detail,
+          category,
+        },
+      });
     }
   };
   return (

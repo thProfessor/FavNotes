@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: 240,
+    backgroundColor: theme.palette.secondary.main,
   },
 }));
 const Layout = ({ children }) => {
@@ -37,13 +38,13 @@ const Layout = ({ children }) => {
       id: 1,
       name: "Home",
       path: "/",
-      icon: <HomeOutlinedIcon color="secondary" />,
+      icon: <HomeOutlinedIcon color="primary" />,
     },
     {
       id: 2,
       name: "Create",
       path: "/create",
-      icon: <CreateOutlinedIcon color="secondary" />,
+      icon: <CreateOutlinedIcon color="primary" />,
     },
   ];
   return (
